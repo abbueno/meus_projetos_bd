@@ -27,9 +27,14 @@ $p = new Pessoa("crudpdo","localhost","root","");
         <section id="direita">
         <?php
             $dados = $p-> buscarDados();
-            echo "<pre>";
-            var_dump($dados);
-            echo "</pre>";
+            if(count($dados) > 0)
+            {
+                for ($i; $i < ; $i++) {
+                    foreach ($dados[$i] as $k => $v) {
+                        
+                    }
+                }
+            }
         ?>
         <table>
             <tr id="titulo">
