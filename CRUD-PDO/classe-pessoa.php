@@ -30,9 +30,9 @@ Class Pessoa{
         }    
 
         // FUNÇÃO DE CADASTRAR PESSOAS
-        public function cadastrarPessoa($nome,$telefone,$email)
+        public function cadastrarPessoa($nome, $telefone, $email)
         {   //Antes de cadastrar, verificar se já tem o email cadastrado
-            $cmd = $this->pdo->prepare("SELECT id from pessoa WHERE email = :e");
+            $cmd = $this->pdo->prepare("SELECT id FROM pessoa WHERE email = :e");
             $cmd-> bindValue(":e",$email);
             $cmd->execute();
             if($cmd->rowCount() > 0) //email já existe no banco
@@ -44,7 +44,8 @@ Class Pessoa{
                 $cmd-> bindValue(":n",$nome);
                 $cmd-> bindValue(":t",$telefone);
                 $cmd-> bindValue(":e",$email);
-                $cmd->execute();
+                $cmd-> execute();
+                return true;
             }
 
         }

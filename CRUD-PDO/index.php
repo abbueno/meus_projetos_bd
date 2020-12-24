@@ -19,6 +19,7 @@ $p = new Pessoa("crudpdo","localhost","root","");
         $telefone = addslashes($_POST['telefone']);
         $email = addslashes($_POST['email']);
         if (!empty($nome) && !empty($telefone) && !empty($email))
+        {
             if(!$p->cadastrarPessoa($nome, $telefone, $email))
             {
                 echo "Email já está cadastrado!";
@@ -28,6 +29,7 @@ $p = new Pessoa("crudpdo","localhost","root","");
         {
             echo "Preencha todos os campos";
         }
+    }
 
     ?>
 
