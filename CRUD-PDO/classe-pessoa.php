@@ -1,36 +1,48 @@
 <?php
 
-private $pdo;
-//CONEXÃO COM O BD
-public function __construct($dbname, $host, $user, $senha)
-{
-    try 
-	{
-        $this-> new PDO("mysql:dbname=".$dbname.";host=".$host,$user,$senha);
-    }
-    catch (PDOException $e) {
-        echo "Erro com banco de dados ".$e->getMessage();
-        exit();
-    }
-    catch (Exception $e) {
-        echo "Erro generico: " .$e->getMessage();
-        exit();
-    }
+Class Pessoa{
 
-    //FUNÇÃO PARA BUSCAR DADOS LADO DIREITO DA TELA
-    public function buscarDados()
+    private $pdo;
+
+    //CONEXÃO COM O BD
+    public function __construct($dbname, $host, $user, $senha)
     {
-        $res = array();
-        $cmd = this->pdo->query("SELECT * FROM pessoa ORDER BY nome");
-        $res = $cmd->fetchAll(PDO::FETCH_ASSOC);
-        return $res;
+        try 
+        {
+            $this->pdo = new PDO("mysql:dbname=".$dbname.";host=".$host,$user,$senha);
+        }
+        catch (PDOException $e) {
+            echo "Erro com banco de dados ".$e->getMessage();
+            exit();
+        }
+        catch (Exception $e) {
+            echo "Erro generico: " .$e->getMessage();
+            exit();
+        }
     }
+        //FUNÇÃO PARA BUSCAR DADOS LADO DIREITO DA TELA
+        public function buscarDados()
+        {
+            $res = array();
+            $cmd = $this->pdo->query("SELECT * FROM pessoa ORDER BY nome");
+            $res = $cmd->fetchAll(PDO::FETCH_ASSOC);
+            return $res;
+        }    
 
+        public function cadastrarPessoa($nome,$telefone,$email)
+        {   //Antes de cadastrar, verificar se já tem o email cadastrado
+            $cmd = $this->pdo->prepare("SELECT id from pessoa WHERE email = :e");
+            $cmd-> bindValue(":e",$email);
+            $cmd->execute();
+            if($cmd->rowCount() > 0) //email já existe no banco
+            {
+                return false;
+            } else // não foi encontrado o email
+            {
+                
+            }
+
+        }
 }
 
-
-
-
-
-
-?>
+    ?>

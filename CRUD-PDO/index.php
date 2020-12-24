@@ -24,34 +24,33 @@ $p = new Pessoa("crudpdo","localhost","root","");
             <input type="submit" value="Cadastrar">            
         </form>
     </section>
-        <section id="direita">
-        <?php
-            $dados = $p-> buscarDados();
-            if(count($dados) > 0)
-            {
-                for ($i; $i < ; $i++) {
-                    foreach ($dados[$i] as $k => $v) {
-                        
-                    }
-                }
-            }
-        ?>
-        <table>
+    <section id="direita">
+    <table>
             <tr id="titulo">
                 <td>NOME</td>
                 <td>TELEFONE</td>
                 <td colspan="2">EMAIL</td>
             </tr>
-            <tr>
-                <td>maria</td>
-                <td>289999999</td>
-                <td>email@gmail.com</td>
-                <td><a href="">Editar</a> <a href="">Excluir</a></td>
-            </tr>
-        
+        <?php
+            $dados = $p-> buscarDados();
+            if(count($dados) > 0)
+            {
+                for ($i=0; $i < count($dados) ; $i++) {
+                    echo "<tr>";
+                    foreach ($dados[$i] as $k => $v) {
+                        if ($k != "id")
+                        {
+                            echo "<td>".$v."</td>";
+                        }
+                    }
+                    ?>
+                    <td><a href="">Editar</a> <a href="">Excluir</a></td>
+                    <?php
+                    echo "</tr>";                    
+                }        
+            }            
+        ?>                    
         </table>
-
     </section>
-
 </body>
 </html>
