@@ -29,6 +29,7 @@ Class Pessoa{
             return $res;
         }    
 
+        // FUNÇÃO DE CADASTRAR PESSOAS
         public function cadastrarPessoa($nome,$telefone,$email)
         {   //Antes de cadastrar, verificar se já tem o email cadastrado
             $cmd = $this->pdo->prepare("SELECT id from pessoa WHERE email = :e");
@@ -39,7 +40,11 @@ Class Pessoa{
                 return false;
             } else // não foi encontrado o email
             {
-                
+                $cmd = $this->pdo->prepare("INSERT INTO pessoa (nome, telefone, email) VALUES (:n, :t, :e)");
+                $cmd-> bindValue(":n",$nome);
+                $cmd-> bindValue(":t",$telefone);
+                $cmd-> bindValue(":e",$email);
+                $cmd->execute();
             }
 
         }
