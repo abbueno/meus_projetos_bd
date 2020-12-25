@@ -49,6 +49,19 @@ Class Pessoa{
             }
 
         }
+
+        public function excluirPessoa($id)
+        {
+            $cmd = $this->pdo->prepare("DELETE FROM pessoa WHERE id = :id");
+            $cmd->bindValue(":id",$id);
+            $cmd-> execute();            
+        }
+
+        public function buscarDadosPessoa()
+            //http://localhost/Meus_projetos/meus_projetos_bd/CRUD-PDO/index.php?id=25
+
+
+        public function atualizarDados()
 }
 
     ?>
