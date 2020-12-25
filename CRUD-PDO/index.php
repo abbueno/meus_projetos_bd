@@ -29,7 +29,13 @@ $p = new Pessoa("crudpdo","localhost","root","");
             }
             else
             {
-                echo "Preencha todos os campos";
+                ?>
+                <div class="aviso">                    
+                    <h4>
+                    "Preencha todos os campos
+                    </h4>
+                </div>
+                <?php                
             }
         }
         //Editar
@@ -42,12 +48,27 @@ $p = new Pessoa("crudpdo","localhost","root","");
             {
                 if(!$p->cadastrarPessoa($nome, $telefone, $email))
                 {
-                    echo "Email já está cadastrado!";
+                    ?>
+                <div class="aviso">                    
+                    <h4>
+                        Email já está cadastrado!
+                    </h4>
+                </div>
+                <?php
+
                 }
             }
             else
             {
-                echo "Preencha todos os campos";
+                ?>
+                <div class="aviso">
+                    <img src="aviso.jpg" alt="">
+                    <h4> 
+                        Preencha todos os campos
+                    </h4>
+                </div>
+                <?php
+                
             }
         }
     }
@@ -106,11 +127,15 @@ $p = new Pessoa("crudpdo","localhost","root","");
             }
             else
             {
-                echo "Ainda não há pessoas cadastradas!";
-            }            
-        ?>                    
-        </table>
-    </section>
+            ?>                          
+                </table>        
+                    <div class="aviso">
+                        <h4>Ainda não há pessoas cadastradas!</h4>
+                    </div>
+                <?php
+            }
+                ?>
+            </section>
 </body>
 </html>
 
@@ -119,6 +144,9 @@ $p = new Pessoa("crudpdo","localhost","root","");
     {
         $id_pessoa = addslashes($_GET['id']);
         $p->excluirPessoa($id_pessoa);
-        $header("location:index.php");
+        header("location:index.php");
     }
 ?>
+
+
+// https://www.youtube.com/playlist?list=PLYGFJHWj9BYqSXzSfHGd46yipCrkjC8AD

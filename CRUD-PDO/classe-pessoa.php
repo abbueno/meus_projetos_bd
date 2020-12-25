@@ -79,9 +79,4 @@ Class Pessoa{
                 
         }
 }
-
     ?>
-
-
-
-//http://localhost/Meus_projetos/meus_projetos_bd/CRUD-PDO/index.php?id=25
